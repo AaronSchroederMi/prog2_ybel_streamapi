@@ -1,9 +1,6 @@
 package streamapi;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 /** Starter for the stream api task. */
@@ -72,9 +69,10 @@ public class Main {
      * @param path Name of the file to be accessed within the resource folder.
      * @return An open {@link InputStream} for the resource file
      */
-    private static InputStream getResourceAsStream(String path) {
-        // TODO
-        throw new UnsupportedOperationException();
+    private static InputStream getResourceAsStream(String path) throws FileNotFoundException {
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream("streamapi/" + path);
+        return inputStream;
     }
 
     /**
